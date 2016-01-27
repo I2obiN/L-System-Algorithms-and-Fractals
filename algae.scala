@@ -12,7 +12,7 @@ object Lfractal {
     var x = 0
     var fractal: String = "A"
 
-    // Run through iterations, O(n^2)
+    // Run through iterations, O(n^2) (quadratic time I think)
     while(x != iteration){
       // Print current line
       println(fractal)
