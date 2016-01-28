@@ -7,6 +7,7 @@ import scala.io.StdIn
 object Lfractal {
 
   def fractal() = {
+   // O(1)
     print("iterations> ")
     val iteration = StdIn.readInt()
     var x = 0
