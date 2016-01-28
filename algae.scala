@@ -10,6 +10,7 @@ object Lfractal {
    // O(1)
     print("iterations> ")
     val iteration = StdIn.readInt()
+    require(iteration > 0)
     var x = 0
     var fractal: String = "A"
 
