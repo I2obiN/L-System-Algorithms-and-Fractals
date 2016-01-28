@@ -1,10 +1,13 @@
 import scala.io.StdIn
+import java.io.PrintWriter
 
 /**
   * Created by I2obiN on 26/01/16.
   */
 
 object Lfractal {
+ 
+ var write: PrintWriter = new PrintWriter("algae.txt", "UTF-8")
 
   def fractal() = {
    // O(1)
@@ -17,7 +20,7 @@ object Lfractal {
     // Run through iterations, O(n^2) (quadratic time I think)
     while(x != iteration){
       // Print current line
-      println(fractal)
+      write.println(fractal)
       fractal = fractal.flatMap { case 'A' => "AB" case 'B' => "A"}
       x+=1
     }
