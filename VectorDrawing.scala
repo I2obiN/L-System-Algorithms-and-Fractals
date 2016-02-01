@@ -4,7 +4,7 @@ import java.io.PrintWriter
 
 /**
   * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  * Created by I2obiN on 01/02/16.
+  * Created by I2obiN on 26/01/16.
   * Vector drawing algorithm using an LSystem
   * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   */
@@ -13,21 +13,21 @@ object Lfractal {
 
   var write: PrintWriter = new PrintWriter("algae.txt", "UTF-8")
   var draw: StringBuilder = new StringBuilder("")
-  var direction = 0
-  // Enter distance you want to draw
-  var iteration = 0
+  var direction = 1
+  var cells = ""
 
   def cells(z: String, i: Int): String = {
     require(i > 0)
+    cells = z
     var x = 0
-    iteration = i
+    val iteration = i
     val horizontal = '━'
     val rightanddown = '┓'
     val leftanddown = '┏'
     val leftandup = '┗'
     val rightandup = '┛'
     val vertical = '┃'
-    var cells: String = z
+
 
     // Algorithm
     while(x != iteration) {
@@ -41,9 +41,10 @@ object Lfractal {
       }
 
       if(direction == 1) {
+        for(count <- x to 0) { draw.append(" ") }
         cells = cells.flatMap {
-          case 'A' => draw.append("\n"); draw+=vertical; write.print(draw); "AB"
-          case 'B' => draw.append("\n"); draw+=vertical; write.print(draw); "A"
+          case 'A' => draw.append("\n" + draw); draw+=vertical; write.print(draw); "AB"
+          case 'B' => draw.append("\n" + draw); draw+=vertical; write.print(draw); "A"
         }
         if(x == iteration-1){ draw.append("\n"); draw+=rightandup; write.print(draw) }
       }
@@ -57,7 +58,7 @@ object Lfractal {
       }
 
       if(direction == 3) {
-        if(x == 0){ write.print(leftandup.toString); }
+        if(x == 0){ write.print(leftanddown.toString); }
         cells = cells.flatMap {
           case 'A' => draw+=horizontal; write.print(draw); "AB"
           case 'B' => draw+=horizontal; write.print(draw); "A"
@@ -68,14 +69,16 @@ object Lfractal {
       x+=1
     }
 
-    // Cleaning
-    write.close()
     // Return
     cells
   }
 
   def main(arg: Array[String]): Unit = {
     // Run the function
-    for(x <- 1 to 10) { var gen = cells("A", x) }
+    cells("A", 2)
+    direction+=1
+    cells("A", 2)
+    write.close()
+
   }
 }
