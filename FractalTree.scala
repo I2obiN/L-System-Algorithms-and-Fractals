@@ -3,8 +3,10 @@ import scala.swing._
 import scala.swing.Panel
 
 /**
-  * Created by I2obiN && rosettacode.org on 03/02/16.
+  * Created by rosettacode.org, rebuilt by I2obiN on 05/02/16.
   * Added swing lib through build.sbt, rewrote preferrsedsize call
+  * SBT issues with Java 8 so should work on Java 7
+  * https://gist.github.com/I2obiN/4a436b2d93c15c16569e
   */
 
 class FractalTree extends SimpleSwingApplication {
